@@ -19,7 +19,7 @@ public class Curso {
 	private String nombre;
 	private Integer cicloLectivo;
 	private Integer cupo; 
-	private List<Alumno> inscriptos;
+	private ArrayList<Alumno> inscriptos;
 	private Integer creditos;
 	private Integer creditosRequeridos;
 	//private Integer ultimoInscripto = 0;
@@ -33,7 +33,7 @@ public class Curso {
 		this.creditosRequeridos = 0;
 	}
 
-	public Curso(Integer id, String nombre, Integer cicloLectivo, Integer cupo, List<Alumno> inscriptos,
+	public Curso(Integer id, String nombre, Integer cicloLectivo, Integer cupo, ArrayList<Alumno> inscriptos,
 			Integer creditos, Integer creditosRequeridos, Registro reg) {
 		super();
 		this.id = id;
@@ -45,7 +45,6 @@ public class Curso {
 		this.creditosRequeridos = creditosRequeridos;
 		this.log = reg;
 	}
-
 
 
 	/**
@@ -68,6 +67,10 @@ public class Curso {
 			
 			if ((a.creditosObtenidos() >= this.creditosRequeridos)  && (inscriptos.size() < cupo) && (a.cantidadCursos() <= 3)) {
 				log.registrar(this, "inscribir ", a.toString());
+			}
+			else {
+				System.out.println("No cumple con algun requisito.");
+				return false;
 			}
 			
 		} catch (IOException e) {
