@@ -9,9 +9,11 @@ public class Alumno {
 	private Integer nroLibreta;
 	private List<Curso> cursando;
 	private List<Curso> aprobados;
-
+	private Integer creditos = 0;
+	
+	
 	public int creditosObtenidos() {
-		return 1;
+		return this.creditos;
 	}
 
 	public void aprobar(Curso c) {
@@ -19,7 +21,11 @@ public class Alumno {
 	}
 
 	public void inscripcionAceptada(Curso c) {
-		//
+		this.cursando.add(c);
+	}
+	
+	public int cantidadCursos() {
+		return this.cursando.size();
 	}
 	
 	
