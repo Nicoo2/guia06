@@ -96,21 +96,7 @@ public class Curso {
 	public void setCreditosRequeridos(Integer creditosRequeridos) {
 		this.creditosRequeridos = creditosRequeridos;
 	}
-
-	/**
-	 * Este metodo, verifica si el alumno se puede inscribir y si es asi lo agrega al curso,
-	 * agrega el curso a la lista de cursos en los que está inscripto el alumno y retorna verdadero.
-	 * Caso contrario retorna falso y no agrega el alumno a la lista de inscriptos ni el curso a la lista
-	 * de cursos en los que el alumno está inscripto.
-	 * 
-	 * Para poder inscribirse un alumno debe
-	 * 		a) tener como minimo los creditos necesarios
-	 *      b) tener cupo disponibles
-	 *      c) puede estar inscripto en simultáneo a no más de 3 cursos del mismo ciclo lectivo.
-	 * @param a
-	 * @return
-	 * @throws IOException 
-	 */
+	
 	public Boolean inscribir(Alumno a) {
 		
 		try {
