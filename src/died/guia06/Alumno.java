@@ -22,12 +22,56 @@ public class Alumno implements Comparable<Alumno>{
 		this.aprobados = new ArrayList<Curso>();
 	} 
 
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Integer getNroLibreta() {
+		return nroLibreta;
+	}
+	public void setNroLibreta(Integer nroLibreta) {
+		this.nroLibreta = nroLibreta;
+	}
+
+	public Integer getCreditos() {
+		return creditos;
+	}
+	public void setCreditos(Integer creditos) {
+		this.creditos = creditos;
+	}
+	
+	public ArrayList<Curso> getCursando() {
+		return cursando;
+	}
+
+
+	public void setCursando(ArrayList<Curso> cursando) {
+		this.cursando = cursando;
+	}
+
+
+	public ArrayList<Curso> getAprobados() {
+		return aprobados;
+	}
+
+
+	public void setAprobados(ArrayList<Curso> aprobados) {
+		this.aprobados = aprobados;
+	}
+
+//////
 	public int creditosObtenidos() {
 		return this.creditos;
 	}
 	
-	public void aprobar(Curso c) {
+	public void aprobar(Curso c) { // elimina el curso aprobado de las lista 'cursando'
 		this.aprobados.add(c);
+		this.cursando.remove(c);		
 	}
 	
 	public void inscripcionAceptada(Curso c) {
@@ -38,6 +82,24 @@ public class Alumno implements Comparable<Alumno>{
 		return this.cursando.size();
 	}
 	
+	public int cantidadCursos(Integer unCiclo) {
+		int res = 0;
+		for(Curso c: this.cursando) {	
+			if( (int) c.getCicloLectivo() == (int) unCiclo){
+				
+				res +=1;	
+			}
+		}
+		return res;	
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Alumno [nombre=" + nombre + ", nroLibreta=" + nroLibreta + ", creditos=" + creditos + "]" +"\n";
+	}
+
+
 	public boolean equals(Alumno a) {
 		if (this.nroLibreta == a.nroLibreta) return true;
 		return false;
@@ -47,7 +109,6 @@ public class Alumno implements Comparable<Alumno>{
 	public int compareTo(Alumno o) {
 		return this.nombre.compareToIgnoreCase(o.nombre);	
 	}
-	
-	
+
 
 }
