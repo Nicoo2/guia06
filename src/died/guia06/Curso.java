@@ -96,38 +96,29 @@ public class Curso {
 	public void setCreditosRequeridos(Integer creditosRequeridos) {
 		this.creditosRequeridos = creditosRequeridos;
 	}
-	
+	////
 	public Boolean inscribir(Alumno a) {
-		
 		try {
-			
 			if ((a.creditosObtenidos() >= this.creditosRequeridos)  && (inscriptos.size() < cupo) && (a.cantidadCursos(cicloLectivo) < 3)) {
 				log.registrar(this, "inscribir ", a.toString());
+				inscriptos.add(a);
+				a.inscripcionAceptada(this);
+				return true;
 			}
 			else {
-				System.out.println("No cumple con algún requisito.");
+				// System.out.println("No cumple con algún requisito.");
 				return false;
-			}
-			
+			}			
 		} catch (IOException e) {
-			//Si falla registrar()
-			
-			System.out.println("Falló el metodo registrar.");
+			//System.out.println("Falló el metodo registrar.");
 			e.printStackTrace();
 			return false;
-			
 		}
-		//Si no falla registrar()
-		inscriptos.add(a);
-		a.inscripcionAceptada(this);
-		return true;
 		
+			
 	}
-	
-	/**
-	 * imprime los inscriptos en orden alfabetico
-	 */
-	public void imprimirInscriptos() {
+
+	public boolean imprimirInscriptos() {
 		ArrayList<Alumno> auxLista = this.inscriptos;
 		
 		try {	
@@ -135,41 +126,49 @@ public class Curso {
 			System.out.println("1 - Por nombres alfabeticamente");
 			System.out.println("2 - Por numero de libreta");
 			System.out.println(" 3 - Por total de creditos");
-			System.out.println("\n\n");
+			System.out.println("\n");
 			System.out.println("0 - Cancelar operación.");
 			
 			Scanner scan = new Scanner(System.in);
 			int opcion = scan.nextInt(); 
-
+			scan.close();
+			
 			switch (opcion) {
 			case 1:
+				log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 					Collections.sort(auxLista, new CompararAlumnoNombre());
-				break;
+					System.out.println(auxLista);
+					return true;
+				//break;
 			case 2:
+				log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 					Collections.sort(auxLista, new CompararAlumnosNroLibreta());
-				break;
+					System.out.println(auxLista);
+					return true;
+				//break;
 			case 3:
+				log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 					Collections.sort(auxLista, new CompararAlumnoCreditos());
-				break;				
+					System.out.println(auxLista);
+					return true;
+				//break;				
 			case 0:
-				System.out.println("Operacion cancelada.");
-				return;
-
+				System.out.println("Operacion cancelada." + "\n");
+				return true;
+				//break;
 			default:
 				break;
 			}
 
-			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
-			
 		} catch (IOException e) {
-			//Si falla registrar()
-			System.out.println("Fallo el metodo registrar.");
+			//System.out.println("Fallo el metodo registrar.");
 			e.printStackTrace();
 		}
-		
-		System.out.println(auxLista);	
-		
+		return true;
+	} 
+	
+	public int cantidadAlumnosInscriptos() {
+		return this.inscriptos.size();
 	}
-
-
+	
 }
