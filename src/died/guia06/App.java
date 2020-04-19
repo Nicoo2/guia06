@@ -101,9 +101,18 @@ public class App {
 				System.out.println("");
 				try {
 					Algebra.inscribirAlumno(al9);
-				} catch (CupoCubiertoException | CreditosInsuficientesException | CursosLimiteException| RegistroAuditoriaExcepcion e) { //multicatch
+				} catch (CupoCubiertoException e) {
 					// TODO Auto-generated catch block
-					System.out.println(e.getMessage()); 
+					System.out.println(e.getMessage());
+				} catch (CreditosInsuficientesException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				} catch (CursosLimiteException e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
+				} catch (RegistroAuditoriaExcepcion e) {
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage());
 				}
 				
 	}
