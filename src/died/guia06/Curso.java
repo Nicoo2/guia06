@@ -168,6 +168,28 @@ public class Curso {
 		}
 	} 
 	
+	
+	public void inscribirAlumno(Alumno a) throws CupoCubiertoException, CreditosInsuficientesException, CursosLimiteException, RegistroAuditoriaExcepcion {
+		
+		if (!(a.creditosObtenidos() >= this.creditosRequeridos)) throw new CreditosInsuficientesException();
+		if(!(inscriptos.size() < cupo)) throw new CupoCubiertoException();
+		if(!(a.cantidadCursos(cicloLectivo) < 3)) throw new CursosLimiteException();
+
+		try {
+			log.registrar(this, "inscribir ", a.toString());
+			inscriptos.add(a);
+			a.inscripcionAceptada(this);	
+		} catch (IOException e) {
+			throw new RegistroAuditoriaExcepcion();
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
 	public int cantidadAlumnosInscriptos() {
 		return this.inscriptos.size();
 	}

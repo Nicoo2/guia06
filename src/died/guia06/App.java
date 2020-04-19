@@ -7,6 +7,10 @@ import java.util.Collections;
 import died.guia06.util.CompararAlumnoCreditos;
 import died.guia06.util.CompararAlumnoNombre;
 import died.guia06.util.CompararAlumnosNroLibreta;
+import died.guia06.util.CreditosInsuficientesException;
+import died.guia06.util.CupoCubiertoException;
+import died.guia06.util.CursosLimiteException;
+import died.guia06.util.RegistroAuditoriaExcepcion;
 
 public class App {
 
@@ -90,6 +94,17 @@ public class App {
 				//HASTA AQUI PASO 06
 				/////////////
 				
+				//FORZANDO LA EXCEPCION
+				System.out.println("* Se forzara un mensaje de error, tratando de inscribir a :");
+				System.out.print(al9.toString());
+				System.out.println("Al curso: " + Algebra);
+				System.out.println("");
+				try {
+					Algebra.inscribirAlumno(al9);
+				} catch (CupoCubiertoException | CreditosInsuficientesException | CursosLimiteException| RegistroAuditoriaExcepcion e) { //multicatch
+					// TODO Auto-generated catch block
+					System.out.println(e.getMessage()); 
+				}
 				
 	}
 }
