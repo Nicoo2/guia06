@@ -97,7 +97,7 @@ public class Curso {
 		this.creditosRequeridos = creditosRequeridos;
 	}
 	////
-	public Boolean inscribir(Alumno a) {
+	public Boolean inscribir(Alumno a) { // !!! añade a la lista 'cursando' del Alumno a el curso que recibe el mensaje
 		try {
 			if ((a.creditosObtenidos() >= this.creditosRequeridos)  && (inscriptos.size() < cupo) && (a.cantidadCursos(cicloLectivo) < 3)) {
 				log.registrar(this, "inscribir ", a.toString());
@@ -118,7 +118,7 @@ public class Curso {
 			
 	}
 
-	public boolean imprimirInscriptos() {
+	public boolean imprimirInscriptos() { // retorna TRUE si pudo imprimir
 		ArrayList<Alumno> auxLista = this.inscriptos;
 		
 		try {	
@@ -157,18 +157,26 @@ public class Curso {
 				return true;
 				//break;
 			default:
-				break;
+				return false;
+				//break;
 			}
 
 		} catch (IOException e) {
 			//System.out.println("Fallo el metodo registrar.");
 			e.printStackTrace();
+			return false;
 		}
-		return true;
 	} 
 	
 	public int cantidadAlumnosInscriptos() {
 		return this.inscriptos.size();
 	}
+
+	@Override
+	public String toString() {
+		return "Curso [id=" + id + ", nombre=" + nombre + ", cicloLectivo=" + cicloLectivo + "]";
+	}
+	
+	
 	
 }
